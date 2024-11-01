@@ -29,6 +29,14 @@ jobs:
       - name: Install Dependencies
         run: pnpm i
 
+      - name: Cache Turbo
+        uses: actions/cache@v3
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+
       - name: Lint Prettier
         run: pnpm lint:prettier
 
